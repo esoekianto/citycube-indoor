@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Pass your access token to MapboxOptions so you can load a map
+  String ACCESS_TOKEN = const String.fromEnvironment("ACCESS_TOKEN");
+  MapboxOptions.setAccessToken(ACCESS_TOKEN);
+
   runApp(const MyApp());
 }
 
@@ -17,32 +23,32 @@ class MyApp extends StatelessWidget {
 // A landmark to show as a marker on the map, mirroring the
 // MapLocation model used in the Android/iOS Google-to-Mapbox tutorials.
 class Landmark {
-  const Landmark(this.position, this.title, this.subtitle, this.hue);
+  const Landmark(this.point, this.title, this.subtitle, this.color);
 
-  final LatLng position;
+  final Point point;
   final String title;
   final String subtitle;
-  final double hue;
+  final Color color;
 }
 
 final List<Landmark> landmarks = [
   Landmark(
-    const LatLng(37.7955, -122.3937),
+    Point(coordinates: Position(-122.3937, 37.7955)),
     "Ferry Building",
     "Marketplace and transit hub on the Embarcadero",
-    BitmapDescriptor.hueRed,
+    Colors.red,
   ),
   Landmark(
-    const LatLng(37.8199, -122.4783),
+    Point(coordinates: Position(-122.4783, 37.8199)),
     "Golden Gate Bridge",
     "Iconic suspension bridge spanning the Golden Gate strait",
-    BitmapDescriptor.hueOrange,
+    Colors.orange,
   ),
   Landmark(
-    const LatLng(37.8267, -122.4230),
+    Point(coordinates: Position(-122.4230, 37.8267)),
     "Alcatraz Island",
     "Former federal prison on an island in San Francisco Bay",
-    BitmapDescriptor.hueAzure,
+    Colors.blue,
   ),
 ];
 
@@ -54,37 +60,50 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPageState extends State<MapPage> {
-  late final Set<Marker> _markers;
+  final Map<String, Landmark> _landmarksByAnnotationId = {};
 
-  @override
-  void initState() {
-    super.initState();
-    _markers = landmarks.map((landmark) {
-      return Marker(
-        markerId: MarkerId(landmark.title),
-        position: landmark.position,
-        icon: BitmapDescriptor.defaultMarkerWithHue(landmark.hue),
-        onTap: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("${landmark.title}\n${landmark.subtitle}")),
-          );
-        },
+  Future<void> _onMapCreated(MapboxMap mapboxMap) async {
+    final manager = await mapboxMap.annotations.createCircleAnnotationManager();
+
+    final created = await manager.createMulti([
+      for (final landmark in landmarks)
+        CircleAnnotationOptions(
+          geometry: landmark.point,
+          circleColor: landmark.color.toARGB32(),
+          circleRadius: 10.0,
+          circleStrokeColor: Colors.white.toARGB32(),
+          circleStrokeWidth: 2.0,
+        ),
+    ]);
+
+    for (var i = 0; i < created.length; i++) {
+      final annotation = created[i];
+      if (annotation != null) {
+        _landmarksByAnnotationId[annotation.id] = landmarks[i];
+      }
+    }
+
+    manager.tapEvents(onTap: (annotation) {
+      final landmark = _landmarksByAnnotationId[annotation.id];
+      if (landmark == null) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("${landmark.title}\n${landmark.subtitle}")),
       );
-    }).toSet();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Mapbox Get Started")),
-      body: GoogleMap(
-        initialCameraPosition: const CameraPosition(
-          target: LatLng(37.8020, -122.4230),
+      body: MapWidget(
+        cameraOptions: CameraOptions(
+          center: Point(coordinates: Position(-122.4230, 37.8020)),
           zoom: 11,
           bearing: 0,
-          tilt: 0,
+          pitch: 0,
         ),
-        markers: _markers,
+        onMapCreated: _onMapCreated,
       ),
     );
   }
