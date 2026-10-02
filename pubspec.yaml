@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  mapbox_maps_flutter: ^2.0.0
+  mapbox_maps_flutter: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +18,6 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/indoor/
+    - assets/models/

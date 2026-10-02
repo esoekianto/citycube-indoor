@@ -1,0 +1,4631 @@
+{
+ "version": 8,
+ "glyphs": "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+ "sprite": "mapbox://sprites/mapbox/streets-v12",
+ "indoor": {
+  "venue": {
+   "sourceId": "indoor-metadata",
+   "sourceLayers": []
+  }
+ },
+ "sources": {
+  "indoor-metadata": {
+   "type": "geojson",
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "properties": {
+       "id": "citycube",
+       "type": "structure",
+       "name": "CityCube Berlin",
+       "center_lon": 13.27058,
+       "center_lat": 52.50009,
+       "camera_zoom": 18.0,
+       "camera_pitch": 55,
+       "camera_bearing": 33.0
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703283,
+          52.5008158
+         ],
+         [
+          13.2717639,
+          52.5002443
+         ],
+         [
+          13.2708317,
+          52.4993642
+         ],
+         [
+          13.2693961,
+          52.4999357
+         ],
+         [
+          13.2703283,
+          52.5008158
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "id": "l1",
+       "name": "1",
+       "description": "Level 1 (Halls A): session rooms",
+       "type": "floor",
+       "z_index": 0,
+       "is_default": false,
+       "structure_ids": "citycube",
+       "conflicted_floor_ids": "entrance;l2;l3"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703283,
+          52.5008158
+         ],
+         [
+          13.2717639,
+          52.5002443
+         ],
+         [
+          13.2708317,
+          52.4993642
+         ],
+         [
+          13.2693961,
+          52.4999357
+         ],
+         [
+          13.2703283,
+          52.5008158
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "id": "entrance",
+       "name": "E",
+       "description": "Mezzanine 1: entrance lobby and registration",
+       "type": "floor",
+       "z_index": 1,
+       "is_default": false,
+       "structure_ids": "citycube",
+       "conflicted_floor_ids": "l1;l2;l3"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703283,
+          52.5008158
+         ],
+         [
+          13.2717639,
+          52.5002443
+         ],
+         [
+          13.2708317,
+          52.4993642
+         ],
+         [
+          13.2693961,
+          52.4999357
+         ],
+         [
+          13.2703283,
+          52.5008158
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "id": "l2",
+       "name": "2",
+       "description": "Level 2 (Hall B): stages and sponsor area",
+       "type": "floor",
+       "z_index": 2,
+       "is_default": true,
+       "structure_ids": "citycube",
+       "conflicted_floor_ids": "l1;entrance;l3"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703283,
+          52.5008158
+         ],
+         [
+          13.2717639,
+          52.5002443
+         ],
+         [
+          13.2708317,
+          52.4993642
+         ],
+         [
+          13.2693961,
+          52.4999357
+         ],
+         [
+          13.2703283,
+          52.5008158
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "id": "l3",
+       "name": "3",
+       "description": "Level 3: speaker rooms and M rooms",
+       "type": "floor",
+       "z_index": 3,
+       "is_default": false,
+       "structure_ids": "citycube",
+       "conflicted_floor_ids": "l1;entrance;l2"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703283,
+          52.5008158
+         ],
+         [
+          13.2717639,
+          52.5002443
+         ],
+         [
+          13.2708317,
+          52.4993642
+         ],
+         [
+          13.2693961,
+          52.4999357
+         ],
+         [
+          13.2703283,
+          52.5008158
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "indoor-structure": {
+   "type": "geojson",
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "properties": {
+       "id": "citycube",
+       "name": "CityCube Berlin"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703283,
+          52.5008158
+         ],
+         [
+          13.2717639,
+          52.5002443
+         ],
+         [
+          13.2708317,
+          52.4993642
+         ],
+         [
+          13.2693961,
+          52.4999357
+         ],
+         [
+          13.2703283,
+          52.5008158
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "indoor-floorplan": {
+   "type": "geojson",
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "stage",
+       "name": "agentic codeCon 2",
+       "seats": 180,
+       "track": "agentic codingCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702959,
+          52.5004862
+         ],
+         [
+          13.2704584,
+          52.5004216
+         ],
+         [
+          13.270383,
+          52.5003504
+         ],
+         [
+          13.2702206,
+          52.5004151
+         ],
+         [
+          13.2702959,
+          52.5004862
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "platform",
+       "name": "Stage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703671,
+          52.5005119
+         ],
+         [
+          13.2704754,
+          52.5004687
+         ],
+         [
+          13.2704452,
+          52.5004403
+         ],
+         [
+          13.2703369,
+          52.5004834
+         ],
+         [
+          13.2703671,
+          52.5005119
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "stage",
+       "name": "reactCon 3",
+       "seats": 140,
+       "track": "react nativeCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2705976,
+          52.5003661
+         ],
+         [
+          13.2707368,
+          52.5003107
+         ],
+         [
+          13.2706715,
+          52.5002491
+         ],
+         [
+          13.2705323,
+          52.5003045
+         ],
+         [
+          13.2705976,
+          52.5003661
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "platform",
+       "name": "Stage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270661,
+          52.5003948
+         ],
+         [
+          13.2707538,
+          52.5003579
+         ],
+         [
+          13.2707237,
+          52.5003294
+         ],
+         [
+          13.2706308,
+          52.5003664
+         ],
+         [
+          13.270661,
+          52.5003948
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "stage",
+       "name": "droidCon 3",
+       "seats": 154,
+       "track": "droidCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2712001,
+          52.5001667
+         ],
+         [
+          13.2712852,
+          52.5001328
+         ],
+         [
+          13.2711345,
+          52.4999906
+         ],
+         [
+          13.2710494,
+          52.5000245
+         ],
+         [
+          13.2712001,
+          52.5001667
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "platform",
+       "name": "Stage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2712582,
+          52.5000762
+         ],
+         [
+          13.2713046,
+          52.5000577
+         ],
+         [
+          13.2712544,
+          52.5000103
+         ],
+         [
+          13.2712079,
+          52.5000288
+         ],
+         [
+          13.2712582,
+          52.5000762
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "stage",
+       "name": "flutterCon 3",
+       "seats": 180,
+       "track": "flutterCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2699165,
+          52.5001384
+         ],
+         [
+          13.2700789,
+          52.5000738
+         ],
+         [
+          13.2699785,
+          52.4999789
+         ],
+         [
+          13.269816,
+          52.5000436
+         ],
+         [
+          13.2699165,
+          52.5001384
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "platform",
+       "name": "Stage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2698369,
+          52.5000218
+         ],
+         [
+          13.2699452,
+          52.4999787
+         ],
+         [
+          13.2699151,
+          52.4999502
+         ],
+         [
+          13.2698068,
+          52.4999933
+         ],
+         [
+          13.2698369,
+          52.5000218
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "stage",
+       "name": "XRCon 1",
+       "seats": 140,
+       "track": "xr developerCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2704119,
+          52.499921
+         ],
+         [
+          13.2705589,
+          52.4998624
+         ],
+         [
+          13.2704735,
+          52.4997818
+         ],
+         [
+          13.2703265,
+          52.4998403
+         ],
+         [
+          13.2704119,
+          52.499921
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "platform",
+       "name": "Stage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703474,
+          52.4998185
+         ],
+         [
+          13.2704402,
+          52.4997816
+         ],
+         [
+          13.2704101,
+          52.4997531
+         ],
+         [
+          13.2703173,
+          52.4997901
+         ],
+         [
+          13.2703474,
+          52.4998185
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "stage",
+       "name": "swiftCon 3",
+       "seats": 140,
+       "track": "swiftCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707677,
+          52.4997793
+         ],
+         [
+          13.2709224,
+          52.4997177
+         ],
+         [
+          13.270837,
+          52.4996371
+         ],
+         [
+          13.2706823,
+          52.4996987
+         ],
+         [
+          13.2707677,
+          52.4997793
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "platform",
+       "name": "Stage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707032,
+          52.4996769
+         ],
+         [
+          13.2708038,
+          52.4996369
+         ],
+         [
+          13.2707736,
+          52.4996084
+         ],
+         [
+          13.2706731,
+          52.4996484
+         ],
+         [
+          13.2707032,
+          52.4996769
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Zalando",
+       "booth": "47"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706309,
+          52.5002315
+         ],
+         [
+          13.2706851,
+          52.50021
+         ],
+         [
+          13.270663,
+          52.5001891
+         ],
+         [
+          13.2706088,
+          52.5002107
+         ],
+         [
+          13.2706309,
+          52.5002315
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Expo",
+       "booth": "48"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706088,
+          52.5002107
+         ],
+         [
+          13.270663,
+          52.5001891
+         ],
+         [
+          13.2706399,
+          52.5001673
+         ],
+         [
+          13.2705857,
+          52.5001888
+         ],
+         [
+          13.2706088,
+          52.5002107
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Amazon",
+       "booth": "61"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2704643,
+          52.5002507
+         ],
+         [
+          13.2705339,
+          52.500223
+         ],
+         [
+          13.2704937,
+          52.500185
+         ],
+         [
+          13.2704241,
+          52.5002127
+         ],
+         [
+          13.2704643,
+          52.5002507
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Firebase",
+       "booth": "49a"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270399,
+          52.500189
+         ],
+         [
+          13.2704686,
+          52.5001613
+         ],
+         [
+          13.2704435,
+          52.5001376
+         ],
+         [
+          13.2703739,
+          52.5001653
+         ],
+         [
+          13.270399,
+          52.500189
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Flutter",
+       "booth": "49"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703337,
+          52.5001274
+         ],
+         [
+          13.2704033,
+          52.5000997
+         ],
+         [
+          13.2703681,
+          52.5000665
+         ],
+         [
+          13.2702985,
+          52.5000942
+         ],
+         [
+          13.2703337,
+          52.5001274
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Touchlab",
+       "booth": "51"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702421,
+          52.500207
+         ],
+         [
+          13.2702885,
+          52.5001885
+         ],
+         [
+          13.2702634,
+          52.5001648
+         ],
+         [
+          13.270217,
+          52.5001833
+         ],
+         [
+          13.2702421,
+          52.500207
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Codemate",
+       "booth": "50"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702885,
+          52.5001885
+         ],
+         [
+          13.2703349,
+          52.5001701
+         ],
+         [
+          13.2703098,
+          52.5001463
+         ],
+         [
+          13.2702634,
+          52.5001648
+         ],
+         [
+          13.2702885,
+          52.5001885
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Leancode",
+       "booth": "52"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702079,
+          52.5001748
+         ],
+         [
+          13.2702543,
+          52.5001563
+         ],
+         [
+          13.2702292,
+          52.5001326
+         ],
+         [
+          13.2701828,
+          52.5001511
+         ],
+         [
+          13.2702079,
+          52.5001748
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "VGV",
+       "booth": "53"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702543,
+          52.5001563
+         ],
+         [
+          13.2703007,
+          52.5001378
+         ],
+         [
+          13.2702756,
+          52.5001141
+         ],
+         [
+          13.2702292,
+          52.5001326
+         ],
+         [
+          13.2702543,
+          52.5001563
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Callstack",
+       "booth": "60a"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703557,
+          52.5002831
+         ],
+         [
+          13.2703944,
+          52.5002677
+         ],
+         [
+          13.2703773,
+          52.5002516
+         ],
+         [
+          13.2703386,
+          52.500267
+         ],
+         [
+          13.2703557,
+          52.5002831
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Zimperium",
+       "booth": "59"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703356,
+          52.5002642
+         ],
+         [
+          13.2703743,
+          52.5002488
+         ],
+         [
+          13.2703572,
+          52.5002326
+         ],
+         [
+          13.2703185,
+          52.500248
+         ],
+         [
+          13.2703356,
+          52.5002642
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Software Mansion",
+       "booth": "60b"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703155,
+          52.5002452
+         ],
+         [
+          13.2703542,
+          52.5002298
+         ],
+         [
+          13.2703371,
+          52.5002137
+         ],
+         [
+          13.2702984,
+          52.5002291
+         ],
+         [
+          13.2703155,
+          52.5002452
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Posthog",
+       "booth": "41"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707064,
+          52.5001948
+         ],
+         [
+          13.2707342,
+          52.5001837
+         ],
+         [
+          13.2707171,
+          52.5001675
+         ],
+         [
+          13.2706893,
+          52.5001786
+         ],
+         [
+          13.2707064,
+          52.5001948
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Berlindroid",
+       "booth": "42"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707373,
+          52.5001824
+         ],
+         [
+          13.2707651,
+          52.5001713
+         ],
+         [
+          13.2707481,
+          52.5001552
+         ],
+         [
+          13.2707202,
+          52.5001663
+         ],
+         [
+          13.2707373,
+          52.5001824
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Gradle",
+       "booth": "43"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706873,
+          52.5001767
+         ],
+         [
+          13.2707151,
+          52.5001656
+         ],
+         [
+          13.270698,
+          52.5001495
+         ],
+         [
+          13.2706702,
+          52.5001606
+         ],
+         [
+          13.2706873,
+          52.5001767
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "OneSpan",
+       "booth": "44"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707182,
+          52.5001644
+         ],
+         [
+          13.2707461,
+          52.5001533
+         ],
+         [
+          13.270729,
+          52.5001372
+         ],
+         [
+          13.2707011,
+          52.5001483
+         ],
+         [
+          13.2707182,
+          52.5001644
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Screenshotbot",
+       "booth": "45"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706682,
+          52.5001587
+         ],
+         [
+          13.270696,
+          52.5001476
+         ],
+         [
+          13.270679,
+          52.5001315
+         ],
+         [
+          13.2706511,
+          52.5001426
+         ],
+         [
+          13.2706682,
+          52.5001587
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "HolaFly",
+       "booth": "46"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706991,
+          52.5001464
+         ],
+         [
+          13.270727,
+          52.5001353
+         ],
+         [
+          13.2707099,
+          52.5001192
+         ],
+         [
+          13.270682,
+          52.5001303
+         ],
+         [
+          13.2706991,
+          52.5001464
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Runway",
+       "booth": "6"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709087,
+          52.5001304
+         ],
+         [
+          13.2709597,
+          52.5001101
+         ],
+         [
+          13.2709376,
+          52.5000892
+         ],
+         [
+          13.2708866,
+          52.5001095
+         ],
+         [
+          13.2709087,
+          52.5001304
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Porsche Digital",
+       "booth": "5"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709659,
+          52.5001076
+         ],
+         [
+          13.271017,
+          52.5000873
+         ],
+         [
+          13.2709949,
+          52.5000664
+         ],
+         [
+          13.2709438,
+          52.5000867
+         ],
+         [
+          13.2709659,
+          52.5001076
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Promon",
+       "booth": "7"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2708836,
+          52.5001067
+         ],
+         [
+          13.2709346,
+          52.5000863
+         ],
+         [
+          13.2709125,
+          52.5000655
+         ],
+         [
+          13.2708615,
+          52.5000858
+         ],
+         [
+          13.2708836,
+          52.5001067
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "mapbox",
+       "name": "Mapbox",
+       "booth": "8"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709408,
+          52.5000839
+         ],
+         [
+          13.2709919,
+          52.5000636
+         ],
+         [
+          13.2709698,
+          52.5000427
+         ],
+         [
+          13.2709187,
+          52.500063
+         ],
+         [
+          13.2709408,
+          52.5000839
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "bitdrift",
+       "booth": "24"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707415,
+          52.5000972
+         ],
+         [
+          13.2707879,
+          52.5000787
+         ],
+         [
+          13.2707678,
+          52.5000597
+         ],
+         [
+          13.2707214,
+          52.5000782
+         ],
+         [
+          13.2707415,
+          52.5000972
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Booth 25",
+       "booth": "25"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707957,
+          52.5000756
+         ],
+         [
+          13.2708421,
+          52.5000571
+         ],
+         [
+          13.270822,
+          52.5000382
+         ],
+         [
+          13.2707756,
+          52.5000566
+         ],
+         [
+          13.2707957,
+          52.5000756
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Zebra",
+       "booth": "23"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707184,
+          52.5000753
+         ],
+         [
+          13.2707648,
+          52.5000569
+         ],
+         [
+          13.2707447,
+          52.5000379
+         ],
+         [
+          13.2706983,
+          52.5000564
+         ],
+         [
+          13.2707184,
+          52.5000753
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Bitrise",
+       "booth": "22"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707726,
+          52.5000538
+         ],
+         [
+          13.270819,
+          52.5000353
+         ],
+         [
+          13.2707989,
+          52.5000163
+         ],
+         [
+          13.2707525,
+          52.5000348
+         ],
+         [
+          13.2707726,
+          52.5000538
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Harman",
+       "booth": "8a"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270873,
+          52.5000448
+         ],
+         [
+          13.2709349,
+          52.5000202
+         ],
+         [
+          13.2709018,
+          52.4999889
+         ],
+         [
+          13.2708399,
+          52.5000135
+         ],
+         [
+          13.270873,
+          52.5000448
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "AWS",
+       "booth": "3"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709988,
+          52.4999974
+         ],
+         [
+          13.2710839,
+          52.4999636
+         ],
+         [
+          13.2710236,
+          52.4999067
+         ],
+         [
+          13.2709385,
+          52.4999405
+         ],
+         [
+          13.2709988,
+          52.4999974
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Touchlab",
+       "booth": "9"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2708127,
+          52.4999879
+         ],
+         [
+          13.2708746,
+          52.4999633
+         ],
+         [
+          13.2708545,
+          52.4999443
+         ],
+         [
+          13.2707927,
+          52.4999689
+         ],
+         [
+          13.2708127,
+          52.4999879
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Datadog",
+       "booth": "10"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707896,
+          52.4999661
+         ],
+         [
+          13.2708515,
+          52.4999415
+         ],
+         [
+          13.2708314,
+          52.4999225
+         ],
+         [
+          13.2707695,
+          52.4999471
+         ],
+         [
+          13.2707896,
+          52.4999661
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "RevenueCat",
+       "booth": "2"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709084,
+          52.4999121
+         ],
+         [
+          13.2709857,
+          52.4998813
+         ],
+         [
+          13.2709405,
+          52.4998386
+         ],
+         [
+          13.2708632,
+          52.4998694
+         ],
+         [
+          13.2709084,
+          52.4999121
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Appdome",
+       "booth": "11"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707424,
+          52.4999215
+         ],
+         [
+          13.2708043,
+          52.4998969
+         ],
+         [
+          13.2707842,
+          52.4998779
+         ],
+         [
+          13.2707223,
+          52.4999025
+         ],
+         [
+          13.2707424,
+          52.4999215
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Redcare Pharmacy",
+       "booth": "15"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707193,
+          52.4998997
+         ],
+         [
+          13.2707812,
+          52.4998751
+         ],
+         [
+          13.2707611,
+          52.4998561
+         ],
+         [
+          13.2706992,
+          52.4998807
+         ],
+         [
+          13.2707193,
+          52.4998997
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "JetBrains",
+       "booth": "1"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2708377,
+          52.4998391
+         ],
+         [
+          13.2709104,
+          52.4998102
+         ],
+         [
+          13.2708752,
+          52.499777
+         ],
+         [
+          13.2708025,
+          52.4998059
+         ],
+         [
+          13.2708377,
+          52.4998391
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Maestro",
+       "booth": "29"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706709,
+          52.5000201
+         ],
+         [
+          13.2707049,
+          52.5000065
+         ],
+         [
+          13.2706869,
+          52.4999895
+         ],
+         [
+          13.2706528,
+          52.500003
+         ],
+         [
+          13.2706709,
+          52.5000201
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Appvestor",
+       "booth": "26"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707111,
+          52.5000041
+         ],
+         [
+          13.2707452,
+          52.4999905
+         ],
+         [
+          13.2707271,
+          52.4999735
+         ],
+         [
+          13.270693,
+          52.499987
+         ],
+         [
+          13.2707111,
+          52.5000041
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Wolt",
+       "booth": "28"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706498,
+          52.5000002
+         ],
+         [
+          13.2706838,
+          52.4999866
+         ],
+         [
+          13.2706658,
+          52.4999696
+         ],
+         [
+          13.2706317,
+          52.4999831
+         ],
+         [
+          13.2706498,
+          52.5000002
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Sentry",
+       "booth": "27"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.27069,
+          52.4999842
+         ],
+         [
+          13.2707241,
+          52.4999706
+         ],
+         [
+          13.270706,
+          52.4999535
+         ],
+         [
+          13.2706719,
+          52.4999671
+         ],
+         [
+          13.27069,
+          52.4999842
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Guardsquare",
+       "booth": "20"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2705956,
+          52.499949
+         ],
+         [
+          13.2706342,
+          52.4999336
+         ],
+         [
+          13.2706111,
+          52.4999118
+         ],
+         [
+          13.2705725,
+          52.4999272
+         ],
+         [
+          13.2705956,
+          52.499949
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "eshard",
+       "booth": "21"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270642,
+          52.4999305
+         ],
+         [
+          13.2706884,
+          52.499912
+         ],
+         [
+          13.2706653,
+          52.4998902
+         ],
+         [
+          13.2706189,
+          52.4999087
+         ],
+         [
+          13.270642,
+          52.4999305
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Scanbot",
+       "booth": "19"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2705654,
+          52.4999205
+         ],
+         [
+          13.2706041,
+          52.4999051
+         ],
+         [
+          13.270581,
+          52.4998833
+         ],
+         [
+          13.2705423,
+          52.4998987
+         ],
+         [
+          13.2705654,
+          52.4999205
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "booth",
+       "name": "Appetize",
+       "booth": "18"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706118,
+          52.499902
+         ],
+         [
+          13.2706582,
+          52.4998836
+         ],
+         [
+          13.2706351,
+          52.4998618
+         ],
+         [
+          13.2705887,
+          52.4998802
+         ],
+         [
+          13.2706118,
+          52.499902
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "games",
+       "name": "Games Capital Berlin",
+       "booth": "54"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2701594,
+          52.5000148
+         ],
+         [
+          13.2702831,
+          52.4999655
+         ],
+         [
+          13.2702028,
+          52.4998896
+         ],
+         [
+          13.270079,
+          52.4999389
+         ],
+         [
+          13.2701594,
+          52.5000148
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "hub",
+       "name": "Networking Hub"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706152,
+          52.5000153
+         ],
+         [
+          13.2706017,
+          52.5000061
+         ],
+         [
+          13.2705842,
+          52.4999999
+         ],
+         [
+          13.2705645,
+          52.4999973
+         ],
+         [
+          13.2705444,
+          52.4999986
+         ],
+         [
+          13.2705259,
+          52.5000037
+         ],
+         [
+          13.2705109,
+          52.5000119
+         ],
+         [
+          13.2705008,
+          52.5000227
+         ],
+         [
+          13.2704966,
+          52.5000348
+         ],
+         [
+          13.2704987,
+          52.5000471
+         ],
+         [
+          13.2705069,
+          52.5000584
+         ],
+         [
+          13.2705205,
+          52.5000676
+         ],
+         [
+          13.270538,
+          52.5000738
+         ],
+         [
+          13.2705577,
+          52.5000764
+         ],
+         [
+          13.2705778,
+          52.5000751
+         ],
+         [
+          13.2705963,
+          52.50007
+         ],
+         [
+          13.2706113,
+          52.5000618
+         ],
+         [
+          13.2706214,
+          52.500051
+         ],
+         [
+          13.2706256,
+          52.5000389
+         ],
+         [
+          13.2706235,
+          52.5000266
+         ],
+         [
+          13.2706152,
+          52.5000153
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "reactCon Lounge"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270648,
+          52.5000899
+         ],
+         [
+          13.2706367,
+          52.5000836
+         ],
+         [
+          13.2706218,
+          52.5000817
+         ],
+         [
+          13.2706072,
+          52.5000846
+         ],
+         [
+          13.270597,
+          52.5000915
+         ],
+         [
+          13.2705938,
+          52.5001007
+         ],
+         [
+          13.2705985,
+          52.5001096
+         ],
+         [
+          13.2706099,
+          52.5001159
+         ],
+         [
+          13.2706248,
+          52.5001178
+         ],
+         [
+          13.2706394,
+          52.5001149
+         ],
+         [
+          13.2706496,
+          52.5001079
+         ],
+         [
+          13.2706528,
+          52.5000988
+         ],
+         [
+          13.270648,
+          52.5000899
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "droidCon Lounge"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707232,
+          52.5000155
+         ],
+         [
+          13.2707118,
+          52.5000092
+         ],
+         [
+          13.2706969,
+          52.5000073
+         ],
+         [
+          13.2706824,
+          52.5000101
+         ],
+         [
+          13.2706721,
+          52.5000171
+         ],
+         [
+          13.270669,
+          52.5000263
+         ],
+         [
+          13.2706737,
+          52.5000352
+         ],
+         [
+          13.270685,
+          52.5000414
+         ],
+         [
+          13.2707,
+          52.5000434
+         ],
+         [
+          13.2707145,
+          52.5000405
+         ],
+         [
+          13.2707247,
+          52.5000335
+         ],
+         [
+          13.2707279,
+          52.5000244
+         ],
+         [
+          13.2707232,
+          52.5000155
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "swiftCon Lounge"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706512,
+          52.4999578
+         ],
+         [
+          13.2706398,
+          52.4999516
+         ],
+         [
+          13.2706249,
+          52.4999496
+         ],
+         [
+          13.2706103,
+          52.4999525
+         ],
+         [
+          13.2706001,
+          52.4999595
+         ],
+         [
+          13.2705969,
+          52.4999687
+         ],
+         [
+          13.2706017,
+          52.4999776
+         ],
+         [
+          13.270613,
+          52.4999838
+         ],
+         [
+          13.2706279,
+          52.4999858
+         ],
+         [
+          13.2706425,
+          52.4999829
+         ],
+         [
+          13.2706527,
+          52.4999759
+         ],
+         [
+          13.2706559,
+          52.4999668
+         ],
+         [
+          13.2706512,
+          52.4999578
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "gamedev & xrCon Lounge"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2705028,
+          52.499932
+         ],
+         [
+          13.2704914,
+          52.4999257
+         ],
+         [
+          13.2704765,
+          52.4999238
+         ],
+         [
+          13.270462,
+          52.4999267
+         ],
+         [
+          13.2704517,
+          52.4999336
+         ],
+         [
+          13.2704486,
+          52.4999428
+         ],
+         [
+          13.2704533,
+          52.4999517
+         ],
+         [
+          13.2704646,
+          52.499958
+         ],
+         [
+          13.2704796,
+          52.4999599
+         ],
+         [
+          13.2704941,
+          52.499957
+         ],
+         [
+          13.2705043,
+          52.49995
+         ],
+         [
+          13.2705075,
+          52.4999409
+         ],
+         [
+          13.2705028,
+          52.499932
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "flutterCon Lounge"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2704223,
+          52.5000179
+         ],
+         [
+          13.2704109,
+          52.5000117
+         ],
+         [
+          13.270396,
+          52.5000097
+         ],
+         [
+          13.2703815,
+          52.5000126
+         ],
+         [
+          13.2703713,
+          52.5000196
+         ],
+         [
+          13.2703681,
+          52.5000288
+         ],
+         [
+          13.2703728,
+          52.5000377
+         ],
+         [
+          13.2703842,
+          52.5000439
+         ],
+         [
+          13.2703991,
+          52.5000459
+         ],
+         [
+          13.2704136,
+          52.500043
+         ],
+         [
+          13.2704238,
+          52.500036
+         ],
+         [
+          13.270427,
+          52.5000269
+         ],
+         [
+          13.2704223,
+          52.5000179
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "agentic codeCon Lounge"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2704946,
+          52.5000903
+         ],
+         [
+          13.2704832,
+          52.500084
+         ],
+         [
+          13.2704683,
+          52.5000821
+         ],
+         [
+          13.2704537,
+          52.500085
+         ],
+         [
+          13.2704435,
+          52.500092
+         ],
+         [
+          13.2704403,
+          52.5001011
+         ],
+         [
+          13.270445,
+          52.50011
+         ],
+         [
+          13.2704564,
+          52.5001163
+         ],
+         [
+          13.2704713,
+          52.5001182
+         ],
+         [
+          13.2704859,
+          52.5001153
+         ],
+         [
+          13.2704961,
+          52.5001084
+         ],
+         [
+          13.2704993,
+          52.5000992
+         ],
+         [
+          13.2704946,
+          52.5000903
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "lounge",
+       "name": "Unsolved Unconference"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270184,
+          52.5001937
+         ],
+         [
+          13.2701705,
+          52.5001845
+         ],
+         [
+          13.270153,
+          52.5001783
+         ],
+         [
+          13.2701332,
+          52.5001758
+         ],
+         [
+          13.2701132,
+          52.500177
+         ],
+         [
+          13.2700947,
+          52.5001821
+         ],
+         [
+          13.2700797,
+          52.5001904
+         ],
+         [
+          13.2700696,
+          52.5002011
+         ],
+         [
+          13.2700654,
+          52.5002132
+         ],
+         [
+          13.2700675,
+          52.5002255
+         ],
+         [
+          13.2700757,
+          52.5002368
+         ],
+         [
+          13.2700892,
+          52.500246
+         ],
+         [
+          13.2701067,
+          52.5002522
+         ],
+         [
+          13.2701265,
+          52.5002548
+         ],
+         [
+          13.2701466,
+          52.5002535
+         ],
+         [
+          13.270165,
+          52.5002485
+         ],
+         [
+          13.27018,
+          52.5002402
+         ],
+         [
+          13.2701901,
+          52.5002295
+         ],
+         [
+          13.2701943,
+          52.5002173
+         ],
+         [
+          13.2701922,
+          52.500205
+         ],
+         [
+          13.270184,
+          52.5001937
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "service",
+       "name": "Food Court"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2701957,
+          52.5006408
+         ],
+         [
+          13.2703303,
+          52.5005872
+         ],
+         [
+          13.2701495,
+          52.5004165
+         ],
+         [
+          13.2700149,
+          52.5004701
+         ],
+         [
+          13.2701957,
+          52.5006408
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "activity",
+       "name": "Badminton"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2701731,
+          52.5003599
+         ],
+         [
+          13.2703278,
+          52.5002983
+         ],
+         [
+          13.2702876,
+          52.5002604
+         ],
+         [
+          13.2701329,
+          52.5003219
+         ],
+         [
+          13.2701731,
+          52.5003599
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "activity",
+       "name": "Kicker"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709449,
+          52.5002683
+         ],
+         [
+          13.2710918,
+          52.5002098
+         ],
+         [
+          13.2710416,
+          52.5001624
+         ],
+         [
+          13.2708946,
+          52.5002209
+         ],
+         [
+          13.2709449,
+          52.5002683
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "activity",
+       "name": "Airhockey"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707632,
+          52.5002692
+         ],
+         [
+          13.270822,
+          52.5002458
+         ],
+         [
+          13.2707848,
+          52.5002107
+         ],
+         [
+          13.2707261,
+          52.5002341
+         ],
+         [
+          13.2707632,
+          52.5002692
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "category": "service",
+       "name": "Sponsor storage"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2698277,
+          52.4999715
+         ],
+         [
+          13.2700443,
+          52.4998853
+         ],
+         [
+          13.2700141,
+          52.4998569
+         ],
+         [
+          13.2697975,
+          52.4999431
+         ],
+         [
+          13.2698277,
+          52.4999715
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "masCon",
+       "track": "masCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2697499,
+          52.5000227
+         ],
+         [
+          13.2699396,
+          52.5002018
+         ],
+         [
+          13.2700784,
+          52.5001465
+         ],
+         [
+          13.2698887,
+          52.4999675
+         ],
+         [
+          13.2697499,
+          52.5000227
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "droidCon 1",
+       "track": "droidCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2699824,
+          52.4999699
+         ],
+         [
+          13.2702195,
+          52.5001938
+         ],
+         [
+          13.2704436,
+          52.5001045
+         ],
+         [
+          13.2702065,
+          52.4998807
+         ],
+         [
+          13.2699824,
+          52.4999699
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "react nativeCon 1",
+       "track": "react nativeCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702279,
+          52.4998722
+         ],
+         [
+          13.2704472,
+          52.5000792
+         ],
+         [
+          13.270586,
+          52.500024
+         ],
+         [
+          13.2703666,
+          52.499817
+         ],
+         [
+          13.2702279,
+          52.4998722
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "swiftCon 2",
+       "track": "swiftCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2703773,
+          52.4998127
+         ],
+         [
+          13.2705966,
+          52.5000197
+         ],
+         [
+          13.2707034,
+          52.4999772
+         ],
+         [
+          13.2704841,
+          52.4997702
+         ],
+         [
+          13.2703773,
+          52.4998127
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "droidCon 2",
+       "track": "droidCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2705054,
+          52.4997617
+         ],
+         [
+          13.2707247,
+          52.4999687
+         ],
+         [
+          13.2708421,
+          52.499922
+         ],
+         [
+          13.2706228,
+          52.499715
+         ],
+         [
+          13.2705054,
+          52.4997617
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "react nativeCon 2",
+       "track": "react nativeCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2702965,
+          52.5002665
+         ],
+         [
+          13.270498,
+          52.5004567
+         ],
+         [
+          13.2706048,
+          52.5004143
+         ],
+         [
+          13.2704033,
+          52.500224
+         ],
+         [
+          13.2702965,
+          52.5002665
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "Cross-Framework",
+       "track": "Cross-Framework"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2704246,
+          52.5002155
+         ],
+         [
+          13.2706261,
+          52.5004058
+         ],
+         [
+          13.2707436,
+          52.500359
+         ],
+         [
+          13.270542,
+          52.5001688
+         ],
+         [
+          13.2704246,
+          52.5002155
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "flutterCon 1",
+       "track": "flutterCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270542,
+          52.5001688
+         ],
+         [
+          13.2707436,
+          52.500359
+         ],
+         [
+          13.2708823,
+          52.5003038
+         ],
+         [
+          13.2706808,
+          52.5001135
+         ],
+         [
+          13.270542,
+          52.5001688
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "swiftCon 1",
+       "track": "swiftCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706915,
+          52.5001093
+         ],
+         [
+          13.270893,
+          52.5002995
+         ],
+         [
+          13.2709997,
+          52.500257
+         ],
+         [
+          13.2707982,
+          52.5000668
+         ],
+         [
+          13.2706915,
+          52.5001093
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "agentic codingCon 1",
+       "track": "agentic codingCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2708196,
+          52.5000583
+         ],
+         [
+          13.2710211,
+          52.5002485
+         ],
+         [
+          13.2711385,
+          52.5002018
+         ],
+         [
+          13.270937,
+          52.5000115
+         ],
+         [
+          13.2708196,
+          52.5000583
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "hall",
+       "name": "mobile game developerCon",
+       "track": "mobile game developerCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270694,
+          52.4997105
+         ],
+         [
+          13.270854,
+          52.4998616
+         ],
+         [
+          13.2709928,
+          52.4998063
+         ],
+         [
+          13.2708327,
+          52.4996553
+         ],
+         [
+          13.270694,
+          52.4997105
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "foyer",
+       "name": "Central aisle"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2701768,
+          52.5002108
+         ],
+         [
+          13.2702538,
+          52.5002835
+         ],
+         [
+          13.271001,
+          52.499986
+         ],
+         [
+          13.270924,
+          52.4999133
+         ],
+         [
+          13.2701768,
+          52.5002108
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "service",
+       "name": "Food Court"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2698079,
+          52.500278
+         ],
+         [
+          13.2699858,
+          52.5004459
+         ],
+         [
+          13.2701352,
+          52.5003864
+         ],
+         [
+          13.2699574,
+          52.5002185
+         ],
+         [
+          13.2698079,
+          52.500278
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "category": "foyer",
+       "name": "West Lobby 1"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706572,
+          52.4996615
+         ],
+         [
+          13.2706928,
+          52.4996951
+         ],
+         [
+          13.2708529,
+          52.4996313
+         ],
+         [
+          13.2708173,
+          52.4995977
+         ],
+         [
+          13.2706572,
+          52.4996615
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance",
+       "category": "foyer",
+       "name": "Entrance Lobby"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2704151,
+          52.4997579
+         ],
+         [
+          13.2710079,
+          52.5003174
+         ],
+         [
+          13.2715648,
+          52.5000957
+         ],
+         [
+          13.2713988,
+          52.499939
+         ],
+         [
+          13.2711482,
+          52.5000388
+         ],
+         [
+          13.2709585,
+          52.4998598
+         ],
+         [
+          13.2712091,
+          52.49976
+         ],
+         [
+          13.270972,
+          52.4995362
+         ],
+         [
+          13.2704151,
+          52.4997579
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance",
+       "category": "service",
+       "name": "Registration"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2706515,
+          52.4999661
+         ],
+         [
+          13.270853,
+          52.5001563
+         ],
+         [
+          13.2709923,
+          52.5001009
+         ],
+         [
+          13.2707907,
+          52.4999106
+         ],
+         [
+          13.2706515,
+          52.4999661
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance",
+       "category": "service",
+       "name": "Wardrobe"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2708562,
+          52.4996062
+         ],
+         [
+          13.2710043,
+          52.499746
+         ],
+         [
+          13.2711269,
+          52.4996973
+         ],
+         [
+          13.2709787,
+          52.4995574
+         ],
+         [
+          13.2708562,
+          52.4996062
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance",
+       "category": "activity",
+       "name": "T-Shirt Screen Printing"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2710876,
+          52.5000788
+         ],
+         [
+          13.2712299,
+          52.5002131
+         ],
+         [
+          13.2715418,
+          52.5000889
+         ],
+         [
+          13.2713995,
+          52.4999547
+         ],
+         [
+          13.2710876,
+          52.5000788
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "category": "foyer",
+       "name": "Level 3 corridor"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2697499,
+          52.5000227
+         ],
+         [
+          13.2703427,
+          52.5005823
+         ],
+         [
+          13.2714101,
+          52.5001573
+         ],
+         [
+          13.2708173,
+          52.4995977
+         ],
+         [
+          13.2697499,
+          52.5000227
+         ]
+        ],
+        [
+         [
+          13.2700523,
+          52.5000216
+         ],
+         [
+          13.2706928,
+          52.4997667
+         ],
+         [
+          13.2711077,
+          52.5001584
+         ],
+         [
+          13.2704672,
+          52.5004133
+         ],
+         [
+          13.2700523,
+          52.5000216
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "category": "service",
+       "name": "Speaker Lounge & Prep Rooms"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2698685,
+          52.5001346
+         ],
+         [
+          13.2701945,
+          52.5004424
+         ],
+         [
+          13.270408,
+          52.5003574
+         ],
+         [
+          13.270082,
+          52.5000496
+         ],
+         [
+          13.2698685,
+          52.5001346
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "category": "hall",
+       "name": "droidCon 5",
+       "track": "droidCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2707224,
+          52.4997946
+         ],
+         [
+          13.270841,
+          52.4999066
+         ],
+         [
+          13.2710544,
+          52.4998216
+         ],
+         [
+          13.2709359,
+          52.4997097
+         ],
+         [
+          13.2707224,
+          52.4997946
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "category": "hall",
+       "name": "droidCon 4",
+       "track": "droidCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.270841,
+          52.4999066
+         ],
+         [
+          13.2709595,
+          52.5000185
+         ],
+         [
+          13.271173,
+          52.4999335
+         ],
+         [
+          13.2710544,
+          52.4998216
+         ],
+         [
+          13.270841,
+          52.4999066
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "category": "hall",
+       "name": "flutterCon 4",
+       "track": "flutterCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.2709595,
+          52.5000185
+         ],
+         [
+          13.271078,
+          52.5001304
+         ],
+         [
+          13.2712915,
+          52.5000454
+         ],
+         [
+          13.271173,
+          52.4999335
+         ],
+         [
+          13.2709595,
+          52.5000185
+         ]
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "category": "hall",
+       "name": "flutterCon 2",
+       "track": "flutterCon"
+      },
+      "geometry": {
+       "type": "Polygon",
+       "coordinates": [
+        [
+         [
+          13.271078,
+          52.5001304
+         ],
+         [
+          13.2711966,
+          52.5002423
+         ],
+         [
+          13.2714101,
+          52.5001573
+         ],
+         [
+          13.2712915,
+          52.5000454
+         ],
+         [
+          13.271078,
+          52.5001304
+         ]
+        ]
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "indoor-doors": {
+   "type": "geojson",
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2"
+      },
+      "geometry": {
+       "type": "LineString",
+       "coordinates": [
+        [
+         13.2701656,
+         52.4998545
+        ],
+        [
+         13.2702275,
+         52.4998299
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2"
+      },
+      "geometry": {
+       "type": "LineString",
+       "coordinates": [
+        [
+         13.270475,
+         52.4997313
+        ],
+        [
+         13.2705369,
+         52.4997067
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2"
+      },
+      "geometry": {
+       "type": "LineString",
+       "coordinates": [
+        [
+         13.2711626,
+         52.5002558
+        ],
+        [
+         13.2712863,
+         52.5002066
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2"
+      },
+      "geometry": {
+       "type": "LineString",
+       "coordinates": [
+        [
+         13.2700413,
+         52.5002977
+        ],
+        [
+         13.2700011,
+         52.5002598
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1"
+      },
+      "geometry": {
+       "type": "LineString",
+       "coordinates": [
+        [
+         13.2706893,
+         52.4996487
+        ],
+        [
+         13.2707746,
+         52.4996147
+        ]
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance"
+      },
+      "geometry": {
+       "type": "LineString",
+       "coordinates": [
+        [
+         13.2709822,
+         52.4998821
+        ],
+        [
+         13.2711245,
+         52.5000164
+        ]
+       ]
+      }
+     }
+    ]
+   }
+  },
+  "indoor-pois": {
+   "type": "geojson",
+   "data": {
+    "type": "FeatureCollection",
+    "features": [
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "entrance",
+       "icon": "entrance",
+       "name": "Main entrance"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2701905,
+        52.4998365
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "entrance",
+       "icon": "entrance",
+       "name": "Entrance"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2704999,
+        52.4997133
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "entrance",
+       "icon": "entrance",
+       "name": "Passage to hall 7"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2712305,
+        52.5002369
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "coffee",
+       "icon": "cafe",
+       "name": "Coffee cart"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2705099,
+        52.500273
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "coffee",
+       "icon": "cafe",
+       "name": "Coffee cart"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2707275,
+        52.4999801
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "coffee",
+       "icon": "cafe",
+       "name": "Coffee cart"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2709139,
+        52.4997616
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l2",
+       "type": "highlight",
+       "icon": "marker",
+       "name": "Mapbox"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2709545,
+        52.5000636
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "type": "entrance",
+       "icon": "entrance",
+       "name": "Entrance Jaffestrasse"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2707497,
+        52.4996485
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l1",
+       "type": "info",
+       "icon": "information",
+       "name": "East Lobby 1"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2712855,
+        52.500183
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance",
+       "type": "entrance",
+       "icon": "entrance",
+       "name": "Entrance Messedamm"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2710923,
+        52.4999338
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "entrance",
+       "type": "info",
+       "icon": "information",
+       "name": "Registration"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.2708191,
+        52.5000346
+       ]
+      }
+     },
+     {
+      "type": "Feature",
+      "properties": {
+       "floor_id": "l3",
+       "type": "info",
+       "icon": "information",
+       "name": "East Lobby 3"
+      },
+      "geometry": {
+       "type": "Point",
+       "coordinates": [
+        13.271007,
+        52.49992
+       ]
+      }
+     }
+    ]
+   }
+  }
+ },
+ "layers": [
+  {
+   "id": "indoor-clip",
+   "type": "clip",
+   "source": "indoor-structure",
+   "minzoom": 15,
+   "filter": [
+    "is-active-floor"
+   ],
+   "layout": {
+    "clip-layer-types": [
+     "model",
+     "symbol"
+    ]
+   }
+  },
+  {
+   "id": "indoor-structure-metadata",
+   "type": "fill",
+   "source": "indoor-metadata",
+   "minzoom": 15,
+   "paint": {
+    "fill-opacity": 0,
+    "fill-color": "#000000"
+   }
+  },
+  {
+   "id": "indoor-rooms",
+   "type": "fill",
+   "source": "indoor-floorplan",
+   "minzoom": 15,
+   "slot": "middle",
+   "filter": [
+    "is-active-floor",
+    [
+     "get",
+     "floor_id"
+    ]
+   ],
+   "paint": {
+    "fill-color": [
+     "match",
+     [
+      "get",
+      "category"
+     ],
+     "mapbox",
+     "#4264fb",
+     "stage",
+     [
+      "match",
+      [
+       "get",
+       "track"
+      ],
+      "droidCon",
+      "hsl(140, 60%, 80%)",
+      "flutterCon",
+      "hsl(200, 85%, 82%)",
+      "react nativeCon",
+      "hsl(270, 60%, 86%)",
+      "swiftCon",
+      "hsl(15, 85%, 82%)",
+      "agentic codingCon",
+      "hsl(35, 85%, 80%)",
+      "xr developerCon",
+      "hsl(320, 70%, 86%)",
+      "masCon",
+      "hsl(255, 60%, 86%)",
+      "mobile game developerCon",
+      "hsl(190, 70%, 84%)",
+      "Cross-Framework",
+      "hsl(230, 60%, 85%)",
+      "hsl(300, 60%, 88%)"
+     ],
+     "hall",
+     [
+      "match",
+      [
+       "get",
+       "track"
+      ],
+      "droidCon",
+      "hsl(140, 60%, 80%)",
+      "flutterCon",
+      "hsl(200, 85%, 82%)",
+      "react nativeCon",
+      "hsl(270, 60%, 86%)",
+      "swiftCon",
+      "hsl(15, 85%, 82%)",
+      "agentic codingCon",
+      "hsl(35, 85%, 80%)",
+      "xr developerCon",
+      "hsl(320, 70%, 86%)",
+      "masCon",
+      "hsl(255, 60%, 86%)",
+      "mobile game developerCon",
+      "hsl(190, 70%, 84%)",
+      "Cross-Framework",
+      "hsl(230, 60%, 85%)",
+      "hsl(300, 60%, 88%)"
+     ],
+     "platform",
+     "hsl(300, 40%, 72%)",
+     "lounge",
+     "hsl(30, 75%, 85%)",
+     "hub",
+     "hsl(20, 85%, 72%)",
+     "games",
+     "hsl(150, 45%, 85%)",
+     "activity",
+     "hsl(200, 70%, 86%)",
+     "service",
+     "hsl(0, 0%, 90%)",
+     "foyer",
+     "hsl(220, 20%, 94%)",
+     "hsl(220, 25%, 90%)"
+    ],
+    "fill-opacity": 1
+   }
+  },
+  {
+   "id": "indoor-platforms",
+   "type": "fill-extrusion",
+   "source": "indoor-floorplan",
+   "minzoom": 15,
+   "slot": "middle",
+   "filter": [
+    "all",
+    [
+     "is-active-floor",
+     [
+      "get",
+      "floor_id"
+     ]
+    ],
+    [
+     "==",
+     [
+      "get",
+      "category"
+     ],
+     "platform"
+    ]
+   ],
+   "paint": {
+    "fill-extrusion-height": 0.6,
+    "fill-extrusion-color": "hsl(300, 40%, 72%)",
+    "fill-extrusion-cast-shadows": false
+   }
+  },
+  {
+   "id": "indoor-room-walls",
+   "type": "fill-extrusion",
+   "source": "indoor-floorplan",
+   "minzoom": 15,
+   "slot": "middle",
+   "filter": [
+    "all",
+    [
+     "is-active-floor",
+     [
+      "get",
+      "floor_id"
+     ]
+    ],
+    [
+     "in",
+     [
+      "get",
+      "category"
+     ],
+     [
+      "literal",
+      [
+       "booth",
+       "mapbox",
+       "games",
+       "service"
+      ]
+     ]
+    ]
+   ],
+   "paint": {
+    "fill-extrusion-height": [
+     "match",
+     [
+      "get",
+      "category"
+     ],
+     "mapbox",
+     3.5,
+     "games",
+     1.2,
+     2.5
+    ],
+    "fill-extrusion-line-width": 0.2,
+    "fill-extrusion-color": [
+     "match",
+     [
+      "get",
+      "category"
+     ],
+     "mapbox",
+     "#4264fb",
+     "hsl(0, 0%, 100%)"
+    ],
+    "fill-extrusion-cast-shadows": false
+   }
+  },
+  {
+   "id": "indoor-doors",
+   "type": "fill-extrusion",
+   "source": "indoor-doors",
+   "minzoom": 15,
+   "slot": "middle",
+   "filter": [
+    "is-active-floor",
+    [
+     "get",
+     "floor_id"
+    ]
+   ],
+   "paint": {
+    "fill-extrusion-height": 2.2,
+    "fill-extrusion-line-width": 0.4,
+    "fill-extrusion-color": "hsl(28, 88%, 70%)",
+    "fill-extrusion-cast-shadows": false
+   }
+  },
+  {
+   "id": "indoor-labels",
+   "type": "symbol",
+   "source": "indoor-floorplan",
+   "minzoom": 15,
+   "filter": [
+    "all",
+    [
+     "is-active-floor",
+     [
+      "get",
+      "floor_id"
+     ]
+    ],
+    [
+     "!",
+     [
+      "in",
+      [
+       "get",
+       "category"
+      ],
+      [
+       "literal",
+       [
+        "platform",
+        "mapbox"
+       ]
+      ]
+     ]
+    ]
+   ],
+   "layout": {
+    "text-field": [
+     "to-string",
+     [
+      "get",
+      "name"
+     ]
+    ],
+    "text-font": [
+     "DIN Pro Medium",
+     "Arial Unicode MS Regular"
+    ],
+    "text-size": [
+     "match",
+     [
+      "get",
+      "category"
+     ],
+     "mapbox",
+     15,
+     "stage",
+     13,
+     "hall",
+     13,
+     "hub",
+     13,
+     "foyer",
+     14,
+     10
+    ],
+    "text-anchor": "center",
+    "symbol-z-elevate": false,
+    "symbol-sort-key": [
+     "match",
+     [
+      "get",
+      "category"
+     ],
+     "mapbox",
+     0,
+     "stage",
+     1,
+     "hall",
+     1,
+     "hub",
+     1,
+     2
+    ]
+   },
+   "paint": {
+    "text-color": [
+     "match",
+     [
+      "get",
+      "category"
+     ],
+     "mapbox",
+     "#4264fb",
+     "hsl(210, 20%, 43%)"
+    ],
+    "text-halo-color": "#ffffff",
+    "text-halo-width": 1.3
+   }
+  },
+  {
+   "id": "indoor-pois",
+   "type": "symbol",
+   "source": "indoor-pois",
+   "minzoom": 15,
+   "filter": [
+    "is-active-floor",
+    [
+     "get",
+     "floor_id"
+    ]
+   ],
+   "layout": {
+    "icon-image": [
+     "get",
+     "icon"
+    ],
+    "icon-size": 1,
+    "icon-allow-overlap": true,
+    "icon-anchor": [
+     "match",
+     [
+      "get",
+      "type"
+     ],
+     "highlight",
+     "bottom",
+     "center"
+    ],
+    "text-field": [
+     "match",
+     [
+      "get",
+      "type"
+     ],
+     "highlight",
+     [
+      "get",
+      "name"
+     ],
+     ""
+    ],
+    "text-font": [
+     "DIN Pro Bold",
+     "Arial Unicode MS Bold"
+    ],
+    "text-size": 15,
+    "text-anchor": "top",
+    "text-offset": [
+     0,
+     0.3
+    ],
+    "text-allow-overlap": true,
+    "text-ignore-placement": true,
+    "symbol-z-elevate": false
+   },
+   "paint": {
+    "symbol-z-offset": 3.6,
+    "text-color": "#4264fb",
+    "text-halo-color": "#ffffff",
+    "text-halo-width": 1.5
+   }
+  }
+ ]
+}
