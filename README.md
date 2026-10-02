@@ -1,4 +1,6 @@
-# Mapbox Maps Flutter v3: CityCube Berlin indoor demo
+# CityCube Indoor
+
+Mapbox Maps Flutter v3 demo for NEXTAPP 26 / FlutterCon Berlin.
 
 A Flutter app built on `mapbox_maps_flutter` 3.0.0 that shows an indoor map of
 CityCube Berlin, the venue of NEXTAPP 26, across all four event levels, with
@@ -59,7 +61,8 @@ the data are the same on every platform.
 ## Deploy the web build to GitHub Pages
 
 `.github/workflows/deploy-web.yml` builds the web app on every push to
-`main` and publishes it to GitHub Pages at `https://<user>.github.io/<repo>/`.
+`main` and publishes it to GitHub Pages at `https://<user>.github.io/citycube-indoor/`
+(the path follows the repository name).
 One-time setup in the GitHub repository:
 
 1. Settings, Pages, Build and deployment, Source: GitHub Actions.
