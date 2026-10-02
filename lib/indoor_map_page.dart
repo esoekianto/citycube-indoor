@@ -97,6 +97,10 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   /// On web the engine reports when it has recognised the venue; the config
   /// driven mobile path has no such step.
   bool _venueActive = !_useNativeIndoor;
+
+  /// Set once the user picks the Building view, so the venue activating
+  /// later does not snap back to the default floor.
+  bool _buildingChosen = false;
   StreamSubscription<IndoorState>? _indoorSubscription;
   bool _indoorAdded = false;
 
@@ -167,10 +171,16 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     // engine picking the default floor once the venue is in view.
     _indoorSubscription = mapboxMap.indoor.indoorUpdates.listen((state) {
       if (!mounted) return;
+      final venueActive = state.floors.isNotEmpty;
       setState(() {
-        _venueActive = state.floors.isNotEmpty;
+        _venueActive = venueActive;
         _activeFloorId = state.selectedFloorId;
       });
+      // The engine may report the venue before it settles on a floor; start
+      // on the venue's default floor rather than the bare building.
+      if (venueActive && state.selectedFloorId == null && !_buildingChosen) {
+        mapboxMap.indoor.selectFloor(_defaultFloorId);
+      }
     });
 
     await mapboxMap.indoorSelector.updateSettings(
@@ -228,6 +238,7 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   /// engine is asked and its indoor stream reports back; on mobile the
   /// import's config option is set directly.
   Future<void> _selectFloor(String? floorId) async {
+    _buildingChosen = floorId == null;
     setState(() => _activeFloorId = floorId);
     final mapboxMap = _mapboxMap;
     if (mapboxMap == null) return;
