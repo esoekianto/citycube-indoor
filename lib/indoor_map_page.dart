@@ -74,13 +74,12 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   /// two pickers for the same thing.
   static const _showNativeFloorSelector = false;
 
-  /// 3D car parked outside the Messedamm entrance, following the SDK's
-  /// model layer example (https://docs.mapbox.com/flutter/maps/examples/model_layer/).
-  /// The position is 3 m outside the building's south-east face, computed
-  /// with the georeferencing helpers in tool/generate_citycube_fragment.py.
+  /// 3D car parked in the car park east of the CityCube, across the
+  /// forecourt from the Messedamm entrance, following the SDK's model layer
+  /// example (https://docs.mapbox.com/flutter/maps/examples/model_layer/).
   static const _carModelId = "model-car-id";
   static const _carModelAsset = "asset://assets/models/sportcar.glb";
-  static final _carPosition = Position(13.27136, 52.4998132);
+  static final _carPosition = Position(13.27238, 52.49969);
 
   // Camera read from the venue's `structure` feature. Kept as a single
   // instance so rebuilds never look like a viewport change to the MapWidget.
