@@ -14,8 +14,8 @@ Level 2 positions are pixels of the E02 plan drawing. The other levels come
 from the public NEXTAPP floorplan graphic, which is that plan rotated 90
 degrees, and are given as normalised (u, v) coordinates inside each level's
 parallelogram. Everything is converted to lon/lat by fitting the hall onto the
-building footprint seen on satellite imagery (and cross-checked against Messe
-Berlin's level plan). It is meant to demo the indoor style, not to be survey
+building outline from OpenStreetMap (cross-checked against Messe Berlin's
+level plan). It is meant to demo the indoor style, not to be survey
 accurate.
 
 Run:  python3 tool/generate_citycube_fragment.py
@@ -25,10 +25,15 @@ import math
 from pathlib import Path
 
 # --- Georeferencing -------------------------------------------------------
-# Building center and orientation estimated from Mapbox satellite imagery.
-CENTER_LON, CENTER_LAT = 13.27058, 52.50009
-BUILDING_SIDE_M = 116.0        # the CityCube is roughly a 116 m square
-PLAN_UP_BEARING = 33.0         # the plan's "up" (passage to hall 7) points NE
+# Building outline from OpenStreetMap (way 196694606, © OpenStreetMap
+# contributors, ODbL). Its oriented bounding box gives the center, rotation
+# and size the plan is fitted to: 136 m along the plan's x axis (bearing
+# 127.3°) by 91 m along its y axis (bearing 37.3°, the "passage to hall 7"
+# side, which faces hall 7 to the north-east).
+BUILDING_OUTLINE = [[13.2704029, 52.5008174], [13.270084, 52.5005629], [13.2696907, 52.500249], [13.269586, 52.5001654], [13.2710491, 52.4994859], [13.2711842, 52.4994232], [13.2720012, 52.5000752], [13.2716089, 52.5002574], [13.2713922, 52.500358], [13.2704029, 52.5008174]]
+CENTER_LON, CENTER_LAT = 13.270794, 52.500120
+BUILDING_WIDTH_M, BUILDING_DEPTH_M = 136.2, 91.2   # along plan x / plan y
+PLAN_UP_BEARING = 37.3
 
 # Plan drawing: hall interior spans roughly x 270-960, y 150-740 px and the
 # 100 m² "Games Capital" square is ~80 px wide, so ~8 px per metre.
@@ -119,8 +124,9 @@ def track_of(name):
 
 
 # --- Venue metadata -------------------------------------------------------
-half = BUILDING_SIDE_M / 2 * PX_PER_M
-footprint = rect(PLAN_CX - half, PLAN_CY - half, PLAN_CX + half, PLAN_CY + half)
+# The clip layer and venue metadata use the real outline so Standard's
+# building is removed exactly where the plan sits.
+footprint = [BUILDING_OUTLINE]
 
 FLOORS = [  # id, name, description, z_index, default
     ("l1", "1", "Level 1 (Halls A): session rooms", 0, False),
@@ -269,7 +275,7 @@ doors.append(line(*uv_to_plan(0.0, 0.88), *uv_to_plan(0.0, 0.96), floor_id=L1))
 # --- Mezzanine 1: entrance lobby -------------------------------------------
 ENT = "entrance"
 # The lobby is a strip along the Messedamm (plan right) side of the building.
-LOBBY = dict(x1=700, x2=1060, y1=HALL_Y1, y2=HALL_Y2)
+LOBBY = dict(x1=720, x2=1120, y1=HALL_Y1, y2=HALL_Y2)   # inside the SE part of the footprint
 area(uv_poly([(0, 0), (1, 0), (1, 1), (0.72, 1), (0.72, 0.55), (0.40, 0.55), (0.40, 1), (0, 1)],
              **LOBBY), "Entrance Lobby", "foyer", floor_id=ENT)
 area(uv_rect(0.38, 0.02, 0.72, 0.27, **LOBBY), "Registration", "service", floor_id=ENT)

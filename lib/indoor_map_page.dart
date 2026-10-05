@@ -91,8 +91,10 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   static const _carUri =
       "https://docs.mapbox.com/mapbox-gl-js/assets/ego_car.glb";
   static final _carPosition = Position(13.27238, 52.49969);
-  // Parked parallel to the building face, which has a bearing of 33°.
-  static const _carBearing = 123.0;
+
+  /// Parked parallel to the building's long face, i.e. 90° off the venue
+  /// bearing read from the metadata.
+  double get _carBearing => (_viewport?.bearing ?? 0) + 90;
   static const _carColor = Color(0xFF4264FB);
   static const _carAnimationTick = Duration(milliseconds: 50);
   Timer? _carAnimationTimer;
@@ -459,10 +461,12 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     // continuously; a stationary desktop browser may only report once.
     _viewportController.moveTo(
       // Same bearing as the venue plan so the floor plan stays upright.
-      const FollowPuckViewportState(
+      FollowPuckViewportState(
         zoom: 18.5,
         pitch: 55,
-        bearing: FollowPuckViewportStateBearingConstant(33),
+        bearing: FollowPuckViewportStateBearingConstant(
+          _viewport?.bearing ?? 0,
+        ),
       ),
       transition: const FlyViewportTransition(duration: Duration(seconds: 3)),
     );
