@@ -4488,7 +4488,8 @@
      "hsl(220, 20%, 94%)",
      "hsl(220, 25%, 90%)"
     ],
-    "fill-opacity": 1
+    "fill-opacity": 1,
+    "fill-emissive-strength": 0.9
    }
   },
   {
@@ -4522,7 +4523,8 @@
    "paint": {
     "fill-extrusion-height": 0.6,
     "fill-extrusion-color": "hsl(300, 40%, 72%)",
-    "fill-extrusion-cast-shadows": false
+    "fill-extrusion-cast-shadows": false,
+    "fill-extrusion-emissive-strength": 0.6
    }
   },
   {
@@ -4585,7 +4587,8 @@
      "#4264fb",
      "hsl(0, 0%, 100%)"
     ],
-    "fill-extrusion-cast-shadows": false
+    "fill-extrusion-cast-shadows": false,
+    "fill-extrusion-emissive-strength": 0.6
    }
   },
   {
@@ -4609,7 +4612,8 @@
     "fill-extrusion-height": 2.2,
     "fill-extrusion-line-width": 0.4,
     "fill-extrusion-color": "hsl(28, 88%, 70%)",
-    "fill-extrusion-cast-shadows": false
+    "fill-extrusion-cast-shadows": false,
+    "fill-extrusion-emissive-strength": 0.6
    }
   },
   {

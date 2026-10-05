@@ -121,6 +121,10 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
 
   /// True while the viewport follows the location puck.
   bool _followingUser = false;
+
+  /// Mapbox Standard light presets, as in the Standard style playground.
+  static const _lightPresets = ["dawn", "day", "dusk", "night"];
+  String _lightPreset = "day";
   static const _basemapImportId = "basemap";
 
   /// True while showing the airport, where Standard's own indoor data and
@@ -216,6 +220,15 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
         position: OrnamentPosition.BOTTOM_RIGHT,
         marginRight: 16,
         marginBottom: 190,
+      ),
+    );
+    // The light preset picker takes the top-left corner; the scale bar
+    // moves above the Mapbox logo.
+    await mapboxMap.scaleBar.updateSettings(
+      ScaleBarSettings(
+        position: OrnamentPosition.BOTTOM_LEFT,
+        marginLeft: 8,
+        marginBottom: 40,
       ),
     );
     if (!_useNativeIndoor) return;
@@ -421,6 +434,17 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     );
   }
 
+  /// Switches Mapbox Standard's lighting (dawn, day, dusk, night). The
+  /// venue's extruded walls and the car pick up the same light.
+  Future<void> _setLightPreset(String preset) async {
+    setState(() => _lightPreset = preset);
+    await _mapboxMap?.setStyleImportConfigProperty(
+      _basemapImportId,
+      "lightPreset",
+      preset,
+    );
+  }
+
   /// Shows the user's position: asks for permission, turns on the pulsing
   /// location puck with device heading, and follows it with the viewport.
   /// Mapbox GL JS prompts for permission itself on web.
@@ -534,6 +558,26 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
                 ),
               ),
             ),
+          // Light presets, like the Standard style playground.
+          Positioned(
+            top: 16,
+            left: 16,
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (final preset in _lightPresets)
+                    _FloorButton(
+                      label: preset[0].toUpperCase() + preset.substring(1),
+                      width: 60,
+                      selected: preset == _lightPreset,
+                      onPressed: () => _setLightPreset(preset),
+                    ),
+                ],
+              ),
+            ),
+          ),
           // Camera flights: out to BER airport, back into the venue, and
           // following the user's location.
           Positioned(
@@ -591,6 +635,7 @@ class _FloorButton extends StatelessWidget {
     this.label,
     this.icon,
     this.tooltip,
+    this.width = 44,
     required this.selected,
     required this.onPressed,
   });
@@ -598,6 +643,7 @@ class _FloorButton extends StatelessWidget {
   final String? label;
   final IconData? icon;
   final String? tooltip;
+  final double width;
   final bool selected;
   final VoidCallback onPressed;
 
@@ -610,7 +656,7 @@ class _FloorButton extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child: Container(
-          width: 44,
+          width: width,
           height: 44,
           alignment: Alignment.center,
           color: selected ? scheme.primary : null,
@@ -618,7 +664,11 @@ class _FloorButton extends StatelessWidget {
               ? Icon(icon, color: color, size: 22)
               : Text(
                   label!,
-                  style: TextStyle(fontWeight: FontWeight.bold, color: color),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                    color: color,
+                  ),
                 ),
         ),
       ),

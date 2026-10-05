@@ -51,6 +51,13 @@ python3 tool/generate_citycube_fragment.py
 New or renamed asset files need a cold `flutter run`; edits to an existing
 asset apply on hot restart on iOS and Android, but web needs a cold run.
 
+## Light presets
+
+The top-left picker sets Mapbox Standard's `lightPreset` config option
+(dawn, day, dusk, night) with `setStyleImportConfigProperty`, as in the
+Standard style playground. The indoor layers carry a little emissive
+strength so the plan stays readable at dusk and night.
+
 ## Your location
 
 The crosshair button asks for location permission (`permission_handler` on
