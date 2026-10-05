@@ -4,7 +4,7 @@ Mapbox Maps Flutter v3 demo for NEXTAPP 26 / FlutterCon Berlin.
 
 A Flutter app built on `mapbox_maps_flutter` 3.0.0 that shows an indoor map of
 CityCube Berlin, the venue of NEXTAPP 26, across all four event levels, with
-the Mapbox booth highlighted and a 3D car parked outside. It runs on iOS,
+the Mapbox booth highlighted and an animated 3D car parked outside. It runs on iOS,
 Android and web. A second page is the classic markers "get started" map.
 
 The indoor page is a Flutter port of the Mapbox GL JS example
@@ -41,7 +41,6 @@ device. In VS Code, put the same `--dart-define` in `.vscode/launch.json`
 | `assets/indoor/citycube_fragment.json` | Fragment used on web: venue registered through the style's `indoor` key, `is-active-floor` filters. |
 | `assets/indoor/citycube_fragment_config.json` | Fragment used on iOS and Android: floor driven by an import config option. |
 | `assets/indoor/indoor_fragment.json` | The original GL JS example venue, kept for reference. |
-| `assets/models/sportcar.glb` | Car model from the SDK's model layer example. |
 
 Regenerate the fragments after editing the plan:
 
@@ -51,6 +50,15 @@ python3 tool/generate_citycube_fragment.py
 
 New or renamed asset files need a cold `flutter run`; edits to an existing
 asset apply on hot restart on iOS and Android, but web needs a cold run.
+
+## The 3D car
+
+The car outside the Messedamm entrance follows the model-source scene of the
+SDK's model comparison example: a `ModelSource` carries the glTF uri,
+position and orientation, and a location-indicator `ModelLayer` reads the
+body colour and the hood, trunk and door rotations from feature state, which
+a timer animates. The model is Mapbox's `ego_car.glb` fetched from the docs
+CDN, since a `ModelSource` loads its uri directly on every platform.
 
 ## Why two fragments
 

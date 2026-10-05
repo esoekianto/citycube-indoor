@@ -3,6 +3,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -75,11 +76,25 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   static const _showNativeFloorSelector = false;
 
   /// 3D car parked in the car park east of the CityCube, across the
-  /// forecourt from the Messedamm entrance, following the SDK's model layer
-  /// example (https://docs.mapbox.com/flutter/maps/examples/model_layer/).
-  static const _carModelId = "model-car-id";
-  static const _carModelAsset = "asset://assets/models/sportcar.glb";
+  /// forecourt from the Messedamm entrance. It follows the "model source"
+  /// scene of the SDK's model comparison example: one [ModelSource] carries
+  /// the model's uri, position and orientation, and the [ModelLayer] colours
+  /// the body and swings the doors, hood and trunk through feature state.
+  /// https://github.com/mapbox/mapbox-maps-flutter/blob/main/mapbox_maps_flutter/example/lib/styles/model_comparison_example.dart
+  static const _carSourceId = "carSource";
+  static const _carLayerId = "carLayer";
+  static const _carId = "mapbox-car";
+  // A ModelSource fetches its uri directly, so it needs a URL every platform
+  // can load rather than a bundled asset.
+  static const _carUri =
+      "https://docs.mapbox.com/mapbox-gl-js/assets/ego_car.glb";
   static final _carPosition = Position(13.27238, 52.49969);
+  // Parked parallel to the building face, which has a bearing of 33°.
+  static const _carBearing = 123.0;
+  static const _carColor = Color(0xFF4264FB);
+  static const _carAnimationTick = Duration(milliseconds: 50);
+  Timer? _carAnimationTimer;
+  int _carAnimationElapsedMs = 0;
 
   // Camera read from the venue's `structure` feature. Kept as a single
   // instance so rebuilds never look like a viewport change to the MapWidget.
@@ -131,6 +146,7 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
 
   @override
   void dispose() {
+    _carAnimationTimer?.cancel();
     _indoorSubscription?.cancel();
     super.dispose();
   }
@@ -236,30 +252,100 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     await _addCarModel(mapboxMap);
   }
 
-  /// Adds the car as a style model, a one-point GeoJSON source and a
-  /// [ModelLayer] that joins the two. Models render on every floor.
+  /// Adds the car as a [ModelSource] plus a [ModelLayer]. The source
+  /// whitelists the node and material names the layer may target per model
+  /// instance; the actual colour and rotations arrive through
+  /// `setFeatureState`. Models render on every floor.
   Future<void> _addCarModel(MapboxMap mapboxMap) async {
-    // Bundled models need the Flutter asset URI resolved to a native path.
-    final carModelUri =
-        await MapboxMapsOptions.getFlutterAssetPath(_carModelAsset) ??
-        _carModelAsset;
-    await mapboxMap.addStyleModel(_carModelId, carModelUri);
-
     await mapboxMap.addSource(
-      GeoJsonSource(
-        id: "carSourceId",
-        data: json.encode(Point(coordinates: _carPosition)),
+      ModelSource(
+        id: _carSourceId,
+        batched: false,
+        models: [
+          ModelSourceModel(
+            id: _carId,
+            uri: _carUri,
+            position: [
+              _carPosition.lng.toDouble(),
+              _carPosition.lat.toDouble(),
+            ],
+            orientation: [0.0, 0.0, _carBearing],
+            nodeOverrideNames: [
+              'hood',
+              'trunk',
+              'doors_front-left',
+              'doors_front-right',
+            ],
+            materialOverrideNames: ['body'],
+          ),
+        ],
       ),
     );
 
     await mapboxMap.addLayer(
-      ModelLayer(id: "modelLayer-car", sourceId: "carSourceId")
-        ..modelId = _carModelId
-        ..modelScale = [3, 3, 3]
-        // Parked parallel to the building face, which has a bearing of 33°.
-        ..modelRotation = [0, 0, 123]
-        ..modelType = ModelType.COMMON_3D,
+      ModelLayer(
+        id: _carLayerId,
+        sourceId: _carSourceId,
+        modelType: ModelType.LOCATION_INDICATOR,
+        modelScale: [4.0, 4.0, 4.0],
+        modelColorExpression: [
+          'match',
+          ['get', 'part'],
+          'body',
+          ['feature-state', 'vehicle-color'],
+          '#ffffff',
+        ],
+        modelColorMixIntensityExpression: [
+          'match',
+          ['get', 'part'],
+          'body',
+          1.0,
+          0.0,
+        ],
+        modelRotationExpression: [
+          'match',
+          ['get', 'part'],
+          'hood',
+          ['feature-state', 'hood'],
+          'trunk',
+          ['feature-state', 'trunk'],
+          'doors_front-left',
+          ['feature-state', 'doors-front-left'],
+          'doors_front-right',
+          ['feature-state', 'doors-front-right'],
+          [0.0, 0.0, 0.0],
+        ],
+      ),
     );
+
+    // Body colour: Mapbox blue, as a feature-state value.
+    final hex = _carColor.toARGB32().toRadixString(16).substring(2);
+    await mapboxMap.setFeatureState(
+      _carSourceId,
+      null,
+      _carId,
+      json.encode({'vehicle-color': '#$hex'}),
+    );
+    _startCarAnimation(mapboxMap);
+  }
+
+  /// Swings every moving part open and closed from one sine value, pushing
+  /// the rotations into feature state on each tick.
+  void _startCarAnimation(MapboxMap mapboxMap) {
+    _carAnimationTimer?.cancel();
+    _carAnimationTimer = Timer.periodic(_carAnimationTick, (_) {
+      _carAnimationElapsedMs += _carAnimationTick.inMilliseconds;
+      final swing = (sin(_carAnimationElapsedMs / 1200) + 1) / 2;
+      mapboxMap.setFeatureState(
+        _carSourceId,
+        null,
+        _carId,
+        json.encode({
+          for (final part in _CarPart.values)
+            part.stateKey: part.rotation(swing),
+        }),
+      );
+    });
   }
 
   /// Selects a floor, or no floor at all for the building view. On web the
@@ -466,4 +552,23 @@ class _FloorButton extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Moving parts of the car model, as in the SDK's model comparison example.
+enum _CarPart {
+  hood('hood', [45.0, 0.0, 0.0]),
+  trunk('trunk', [-60.0, 0.0, 0.0]),
+  frontLeftDoor('doors-front-left', [0.0, -80.0, 0.0]),
+  frontRightDoor('doors-front-right', [0.0, 80.0, 0.0]);
+
+  const _CarPart(this.stateKey, this._openRotation);
+
+  /// Feature-state key the layer's `modelRotationExpression` reads for this
+  /// part. It differs from the node name in the model for the doors.
+  final String stateKey;
+  final List<double> _openRotation;
+
+  List<double> rotation(double openness) => [
+    for (final degrees in _openRotation) degrees * openness,
+  ];
 }
