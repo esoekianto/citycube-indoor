@@ -206,6 +206,16 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
 
   Future<void> _onMapCreated(MapboxMap mapboxMap) async {
     _mapboxMap = mapboxMap;
+
+    // The compass defaults to the top-right corner, underneath the floor
+    // selector. Park it above the flight and locate buttons instead.
+    await mapboxMap.compass.updateSettings(
+      CompassSettings(
+        position: OrnamentPosition.BOTTOM_RIGHT,
+        marginRight: 16,
+        marginBottom: 190,
+      ),
+    );
     if (!_useNativeIndoor) return;
 
     // Mirror the engine's floor state so the selector stays in sync with
