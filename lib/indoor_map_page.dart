@@ -9,6 +9,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'markers_page.dart';
 
@@ -37,8 +38,9 @@ import 'markers_page.dart';
 ///   `["==", ["get", "floor_id"], ["config", "activeFloor"]]`, driven via
 ///   [MapboxMap.setStyleImportConfigProperty].
 ///
-/// A 3D car from the SDK's model layer example is parked outside the
-/// Messedamm entrance.
+/// A "locate me" button turns on the location puck and follows the user
+/// with [FollowPuckViewportState], so attendees can see where they are in
+/// the venue. Camera flights go through one [ViewportController].
 class IndoorMapPage extends StatefulWidget {
   const IndoorMapPage({super.key});
 
@@ -100,20 +102,23 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   // instance so rebuilds never look like a viewport change to the MapWidget.
   CameraViewportState? _viewport;
 
-  /// Same camera as [_viewport], for flying back after a detour.
-  CameraOptions? _venueCamera;
+  /// Drives every camera move after start-up: flights and puck following.
+  final _viewportController = ViewportController();
 
   /// Berlin Brandenburg Airport, Terminal 1. Mapbox Standard ships indoor
   /// floor plans for airports; turning on its `showIndoor` option here shows
   /// the engine's built-in indoor mapping and native floor selector, as a
   /// preface to the custom venue.
-  static final _airportCamera = CameraOptions(
+  static final _airportCamera = CameraViewportState(
     center: Point(coordinates: Position(13.5085, 52.3645)),
     zoom: 17,
     pitch: 50,
     bearing: 0,
   );
-  static const _flightDurationMs = 6000;
+  static const _flightDuration = Duration(seconds: 6);
+
+  /// True while the viewport follows the location puck.
+  bool _followingUser = false;
   static const _basemapImportId = "basemap";
 
   /// True while showing the airport, where Standard's own indoor data and
@@ -148,6 +153,7 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   void dispose() {
     _carAnimationTimer?.cancel();
     _indoorSubscription?.cancel();
+    _viewportController.dispose();
     super.dispose();
   }
 
@@ -190,12 +196,6 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
 
     setState(() {
       _viewport = viewport;
-      _venueCamera = CameraOptions(
-        center: viewport.center,
-        zoom: viewport.zoom,
-        pitch: viewport.pitch,
-        bearing: viewport.bearing,
-      );
       _fragment = fragment;
       _floors = floors;
       _defaultFloorId = defaultFloor as String;
@@ -381,7 +381,7 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     await mapboxMap.indoorSelector.updateSettings(
       IndoorSelectorSettings(enabled: true),
     );
-    await _flyTo(_airportCamera);
+    _flyTo(_airportCamera);
   }
 
   /// Flies back to the venue and hands floor selection back to this page.
@@ -397,14 +397,64 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
       "showIndoor",
       false,
     );
-    await _flyTo(_venueCamera);
+    _flyTo(_viewport);
   }
 
-  Future<void> _flyTo(CameraOptions? camera) async {
-    if (camera == null) return;
-    await _mapboxMap?.flyTo(
-      camera,
-      MapAnimationOptions(duration: _flightDurationMs),
+  void _flyTo(ViewportState? state) {
+    if (state == null) return;
+    setState(() => _followingUser = false);
+    _viewportController.moveTo(
+      state,
+      transition: const FlyViewportTransition(duration: _flightDuration),
+    );
+  }
+
+  /// Shows the user's position: asks for permission, turns on the pulsing
+  /// location puck with device heading, and follows it with the viewport.
+  /// Mapbox GL JS prompts for permission itself on web.
+  Future<void> _locateMe() async {
+    final mapboxMap = _mapboxMap;
+    if (mapboxMap == null) return;
+
+    if (!kIsWeb) {
+      final status = await Permission.locationWhenInUse.request();
+      if (!status.isGranted) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              "Location permission is needed to show your position.",
+            ),
+          ),
+        );
+        return;
+      }
+    }
+
+    await mapboxMap.location.updateSettings(
+      LocationComponentSettings(
+        enabled: true,
+        pulsingEnabled: true,
+        showAccuracyRing: true,
+        puckBearingEnabled: true,
+        puckBearing: PuckBearing.HEADING,
+      ),
+    );
+
+    setState(() {
+      _followingUser = true;
+      _atAirport = false;
+    });
+    // Follow mode centres on the next position update, which phones deliver
+    // continuously; a stationary desktop browser may only report once.
+    _viewportController.moveTo(
+      // Same bearing as the venue plan so the floor plan stays upright.
+      const FollowPuckViewportState(
+        zoom: 18.5,
+        pitch: 55,
+        bearing: FollowPuckViewportStateBearingConstant(33),
+      ),
+      transition: const FlyViewportTransition(duration: Duration(seconds: 3)),
     );
   }
 
@@ -437,6 +487,7 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
           MapWidget(
             styleUri: MapboxStyles.STANDARD,
             viewport: _viewport!,
+            viewportController: _viewportController,
             onMapCreated: _onMapCreated,
             onStyleLoadedListener: _onStyleLoaded,
             onMapLoadErrorListener: (error) => debugPrint(
@@ -469,7 +520,8 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
                 ),
               ),
             ),
-          // Camera flights: out to BER airport and back into the venue.
+          // Camera flights: out to BER airport, back into the venue, and
+          // following the user's location.
           Positioned(
             right: 16,
             bottom: 32,
@@ -489,6 +541,12 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
                     tooltip: "Fly back to CityCube",
                     selected: false,
                     onPressed: _flyToVenue,
+                  ),
+                  _FloorButton(
+                    icon: Icons.my_location,
+                    tooltip: "Show my location",
+                    selected: _followingUser,
+                    onPressed: _locateMe,
                   ),
                 ],
               ),

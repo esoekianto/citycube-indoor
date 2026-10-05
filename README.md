@@ -51,6 +51,15 @@ python3 tool/generate_citycube_fragment.py
 New or renamed asset files need a cold `flutter run`; edits to an existing
 asset apply on hot restart on iOS and Android, but web needs a cold run.
 
+## Your location
+
+The crosshair button asks for location permission (`permission_handler` on
+iOS and Android; the browser prompts on web), enables the pulsing location
+puck with device heading via `mapboxMap.location.updateSettings`, and hands
+the camera to a `FollowPuckViewportState` through the page's
+`ViewportController`, so attendees see where they are in the hall. The
+permissions live in `AndroidManifest.xml` and `Info.plist`.
+
 ## The 3D car
 
 The car outside the Messedamm entrance follows the model-source scene of the
