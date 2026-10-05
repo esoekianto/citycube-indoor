@@ -214,12 +214,12 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     _mapboxMap = mapboxMap;
 
     // The compass defaults to the top-right corner, underneath the floor
-    // selector. Park it above the flight and locate buttons instead.
+    // selector. Park it above the zoom, flight and locate buttons instead.
     await mapboxMap.compass.updateSettings(
       CompassSettings(
         position: OrnamentPosition.BOTTOM_RIGHT,
         marginRight: 16,
-        marginBottom: 190,
+        marginBottom: 296,
       ),
     );
     // The light preset picker takes the top-left corner; the scale bar
@@ -445,6 +445,17 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     );
   }
 
+  /// Zooms in or out by one level around the current center.
+  Future<void> _zoomBy(double delta) async {
+    final mapboxMap = _mapboxMap;
+    if (mapboxMap == null) return;
+    final camera = await mapboxMap.getCameraState();
+    await mapboxMap.easeTo(
+      CameraOptions(zoom: camera.zoom + delta),
+      MapAnimationOptions(duration: 300),
+    );
+  }
+
   /// Shows the user's position: asks for permission, turns on the pulsing
   /// location puck with device heading, and follows it with the viewport.
   /// Mapbox GL JS prompts for permission itself on web.
@@ -574,6 +585,31 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
                       selected: preset == _lightPreset,
                       onPressed: () => _setLightPreset(preset),
                     ),
+                ],
+              ),
+            ),
+          ),
+          // Zoom in / out.
+          Positioned(
+            right: 16,
+            bottom: 32 + 3 * 44 + 16,
+            child: Card(
+              clipBehavior: Clip.antiAlias,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _FloorButton(
+                    icon: Icons.add,
+                    tooltip: "Zoom in",
+                    selected: false,
+                    onPressed: () => _zoomBy(1),
+                  ),
+                  _FloorButton(
+                    icon: Icons.remove,
+                    tooltip: "Zoom out",
+                    selected: false,
+                    onPressed: () => _zoomBy(-1),
+                  ),
                 ],
               ),
             ),
