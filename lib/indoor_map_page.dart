@@ -85,6 +85,26 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
   // instance so rebuilds never look like a viewport change to the MapWidget.
   CameraViewportState? _viewport;
 
+  /// Same camera as [_viewport], for flying back after a detour.
+  CameraOptions? _venueCamera;
+
+  /// Berlin Brandenburg Airport, Terminal 1. Mapbox Standard ships indoor
+  /// floor plans for airports; turning on its `showIndoor` option here shows
+  /// the engine's built-in indoor mapping and native floor selector, as a
+  /// preface to the custom venue.
+  static final _airportCamera = CameraOptions(
+    center: Point(coordinates: Position(13.5085, 52.3645)),
+    zoom: 17,
+    pitch: 50,
+    bearing: 0,
+  );
+  static const _flightDurationMs = 6000;
+  static const _basemapImportId = "basemap";
+
+  /// True while showing the airport, where Standard's own indoor data and
+  /// floor selector take over from this page's venue selector.
+  bool _atAirport = false;
+
   MapboxMap? _mapboxMap;
   String? _fragment;
   List<Floor> _floors = const [];
@@ -148,11 +168,18 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
             zIndex: p["z_index"] as int,
           ),
     ]..sort((a, b) => b.zIndex.compareTo(a.zIndex));
-    final defaultFloor = properties
-        .firstWhere((p) => p["type"] == "floor" && p["is_default"] == true)["id"];
+    final defaultFloor = properties.firstWhere(
+      (p) => p["type"] == "floor" && p["is_default"] == true,
+    )["id"];
 
     setState(() {
       _viewport = viewport;
+      _venueCamera = CameraOptions(
+        center: viewport.center,
+        zoom: viewport.zoom,
+        pitch: viewport.pitch,
+        bearing: viewport.bearing,
+      );
       _fragment = fragment;
       _floors = floors;
       _defaultFloorId = defaultFloor as String;
@@ -169,7 +196,9 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     // whatever selects a floor: this page, the native ornament, or the
     // engine picking the default floor once the venue is in view.
     _indoorSubscription = mapboxMap.indoor.indoorUpdates.listen((state) {
-      if (!mounted) return;
+      // At the airport the stream describes Standard's airport floors, which
+      // the native selector handles.
+      if (!mounted || _atAirport) return;
       final venueActive = state.floors.isNotEmpty;
       setState(() {
         _venueActive = venueActive;
@@ -252,6 +281,47 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
     }
   }
 
+  /// Flies to BER and switches on Standard's built-in indoor mapping plus
+  /// the SDK's native floor selector ornament.
+  Future<void> _flyToAirport() async {
+    final mapboxMap = _mapboxMap;
+    if (mapboxMap == null) return;
+    setState(() => _atAirport = true);
+    await mapboxMap.setStyleImportConfigProperty(
+      _basemapImportId,
+      "showIndoor",
+      true,
+    );
+    await mapboxMap.indoorSelector.updateSettings(
+      IndoorSelectorSettings(enabled: true),
+    );
+    await _flyTo(_airportCamera);
+  }
+
+  /// Flies back to the venue and hands floor selection back to this page.
+  Future<void> _flyToVenue() async {
+    final mapboxMap = _mapboxMap;
+    if (mapboxMap == null) return;
+    setState(() => _atAirport = false);
+    await mapboxMap.indoorSelector.updateSettings(
+      IndoorSelectorSettings(enabled: _showNativeFloorSelector),
+    );
+    await mapboxMap.setStyleImportConfigProperty(
+      _basemapImportId,
+      "showIndoor",
+      false,
+    );
+    await _flyTo(_venueCamera);
+  }
+
+  Future<void> _flyTo(CameraOptions? camera) async {
+    if (camera == null) return;
+    await _mapboxMap?.flyTo(
+      camera,
+      MapAnimationOptions(duration: _flightDurationMs),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // Build the map only once the fragment is in hand. Rebuilding a MapWidget
@@ -270,9 +340,9 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
           IconButton(
             icon: const Icon(Icons.place_outlined),
             tooltip: "Markers sample",
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => const MapPage()),
-            ),
+            onPressed: () => Navigator.of(
+              context,
+            ).push(MaterialPageRoute(builder: (_) => const MapPage())),
           ),
         ],
       ),
@@ -288,31 +358,57 @@ class _IndoorMapPageState extends State<IndoorMapPage> {
             ),
           ),
           // Floor selector: the venue's floors plus the building view.
+          if (!_atAirport)
+            Positioned(
+              top: 16,
+              right: 16,
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _FloorButton(
+                      icon: Icons.apartment,
+                      tooltip: "Building",
+                      selected: _activeFloorId == null,
+                      onPressed: () => _selectFloor(null),
+                    ),
+                    for (final floor in _floors)
+                      _FloorButton(
+                        label: floor.name,
+                        selected: floor.id == _activeFloorId,
+                        onPressed: () => _selectFloor(floor.id),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          // Camera flights: out to BER airport and back into the venue.
           Positioned(
-            top: 16,
             right: 16,
+            bottom: 32,
             child: Card(
               clipBehavior: Clip.antiAlias,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _FloorButton(
-                    icon: Icons.apartment,
-                    tooltip: "Building",
-                    selected: _activeFloorId == null,
-                    onPressed: () => _selectFloor(null),
+                    icon: Icons.flight_takeoff,
+                    tooltip: "Fly to BER airport",
+                    selected: false,
+                    onPressed: _flyToAirport,
                   ),
-                  for (final floor in _floors)
-                    _FloorButton(
-                      label: floor.name,
-                      selected: floor.id == _activeFloorId,
-                      onPressed: () => _selectFloor(floor.id),
-                    ),
+                  _FloorButton(
+                    icon: Icons.flight_land,
+                    tooltip: "Fly back to CityCube",
+                    selected: false,
+                    onPressed: _flyToVenue,
+                  ),
                 ],
               ),
             ),
           ),
-          if (!_venueActive)
+          if (!_venueActive && !_atAirport)
             Positioned(
               left: 16,
               bottom: 32,

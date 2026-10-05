@@ -14,6 +14,11 @@ GeoJSON sources and layers (clip, fills, extruded walls and doors, labels,
 POIs) is added as a style import. A floor selector switches levels and a
 "Building" entry shows Standard's own 3D landmark model of the CityCube.
 
+Two flight buttons frame the demo: one flies to Berlin Brandenburg Airport
+and switches on Mapbox Standard's built-in indoor mapping (`showIndoor`) with
+the SDK's native floor selector, the other flies back to the CityCube and
+its custom venue data.
+
 ## Run it
 
 You need a Mapbox public access token. Pass it at build time:
