@@ -19,6 +19,13 @@ and switches on Mapbox Standard's built-in indoor mapping (`showIndoor`) with
 the SDK's native floor selector, the other flies back to the CityCube and
 its custom venue data.
 
+## Presentation
+
+The slide deck for the talk, "Write once, map everywhere: cross-platform
+location apps with Flutter + Mapbox" (DevCon / FlutterCon Berlin 2026), is in
+[docs/DevCon2026_WriteOnceMapEverywhere.pdf](docs/DevCon2026_WriteOnceMapEverywhere.pdf).
+Section 3, "Sample application", walks through this app.
+
 ## Run it
 
 You need a Mapbox public access token. Pass it at build time:
